@@ -45,7 +45,7 @@
                         <tr><td>${p.pno}</td>
                             <td><a href="pds/view.do?pno=${p.pno}">${p.title}</a></td>
                             <td>${p.userid}</td>
-                            <td>${p.regdate}</td>
+                            <td>${ fn:substring(b.regdate,0,10)}</td>
                             <td>${p.thumbup}</td>
                             <td>${p.views}</td></tr>
                         </c:forEach>
