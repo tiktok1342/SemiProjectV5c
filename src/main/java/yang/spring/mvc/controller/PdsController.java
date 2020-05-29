@@ -2,8 +2,10 @@ package yang.spring.mvc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import yang.spring.mvc.service.BoardService;
 import yang.spring.mvc.service.FileUpDownUtil;
@@ -12,6 +14,7 @@ import yang.spring.mvc.vo.BoardVO;
 import yang.spring.mvc.vo.PdsVO;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -59,7 +62,7 @@ public class PdsController {
 
         // 업로드 처리
         FileUpDownUtil util = new FileUpDownUtil();
-        Map<String, String> frmdata= util.procUpload(req);
+        Map<String, String> frmdata = util.procUpload(req);
 
 
         // 서비스 객체로 넘김
@@ -83,4 +86,20 @@ public class PdsController {
         return mv;
     }
 
+    //첨부파일 다운로드하기
+    //컨트롤러 메서드에 ResponseBody 애노테이션을 사용하면
+    // view를 이용해서 데이터를 출력하지 않고
+    //HTTP 응답으로 직접 데이터를 전송하겠다는 의미
+    @ResponseBody
+    @RequestMapping(value = "/pds/pdown")
+    public String pdown(HttpServletRequest req,
+                        HttpServletResponse res) {
+
+        FileUpDownUtil util = new FileUpDownUtil();
+        try {
+            util.procDownload(req, res);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
