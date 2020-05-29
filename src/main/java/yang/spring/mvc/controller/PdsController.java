@@ -6,11 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import yang.spring.mvc.service.BoardService;
+import yang.spring.mvc.service.FileUpDownUtil;
 import yang.spring.mvc.service.PdsService;
 import yang.spring.mvc.vo.BoardVO;
 import yang.spring.mvc.vo.PdsVO;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Map;
 
 @Controller
 public class PdsController {
@@ -33,7 +36,7 @@ public class PdsController {
 
         // 목록 불러오기
         ArrayList<PdsVO> pdlist = psrv.showPds();
-        mv.addObject("pdlist", pdlist);
+        mv.addObject("plist", pdlist);
 
         return mv;
     }
@@ -52,9 +55,14 @@ public class PdsController {
 
     // 새글쓰기
     @RequestMapping(value = "/pds/write", method = RequestMethod.POST)
-    public String writeok(PdsVO pd) {
+    public String writeok(PdsVO p, HttpServletRequest req) {
 
-        psrv.newPds(pd);
+        // 업로드 처리
+        FileUpDownUtil util = new FileUpDownUtil();
+        Map<String, String> frmdata= util.procUpload(req);
+
+        // 서비스 객체로 넘김
+        psrv.newPds(p);
 
         return "redirect:/pds/list";
     }
