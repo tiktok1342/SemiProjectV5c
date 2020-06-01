@@ -41,6 +41,8 @@ public class PdsService {
     }
 
     public PdsVO showOnePds(String pno) {
+        // 첨부팡림
+        pdao.updateViewPds(pno); // 조회수 증가
         return pdao.selectOnePds(pno);
     }
 
@@ -63,4 +65,7 @@ public class PdsService {
         }
     }
 
+    public void modifyDown(String pno) {
+        pdao.updateDownPds(pno);
+    }
 }

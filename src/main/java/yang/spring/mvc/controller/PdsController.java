@@ -44,6 +44,8 @@ public class PdsController {
         return mv;
     }
 
+
+
     // 새글쓰기
     @RequestMapping(value = "/pds/write")
     public ModelAndView write() {
@@ -92,11 +94,13 @@ public class PdsController {
     //HTTP 응답으로 직접 데이터를 전송하겠다는 의미
     @ResponseBody
     @RequestMapping(value = "/pds/pdown")
-    public String pdown(HttpServletRequest req,
+    public void pdown(HttpServletRequest req,
                         HttpServletResponse res) {
 
         FileUpDownUtil util = new FileUpDownUtil();
         try {
+            String pno = req.getParameter("pno");
+            psrv.modifyDown(pno); // 첨부파일 다운수 처리
             util.procDownload(req, res);
         } catch (Exception ex) {
             ex.printStackTrace();
