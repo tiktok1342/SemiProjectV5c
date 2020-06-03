@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/resources/bs4/css/bootstrap.min.css">
     <link rel="stylesheet" href="/resources/fa47/css/font-awesome.min.css">
     <link rel="stylesheet" href="/resources/css/semiproject.css">
+
     <title>부트스트랩4-index</title>
 </head>
 <body>
@@ -78,6 +79,8 @@
 <script src="/resources/bs4/js/bootstrap.min.js"></script>
 <script src="/resources/js/board.js"></script>
 <script src="/resources/js/join.js"></script>
+<script src="/resources/js/gallery.js"></script>
+<script src="/resources/js/pds.js"></script>
 
 <script>
     // 회원가입버튼
