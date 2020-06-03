@@ -53,3 +53,28 @@ CREATE TABLE gallery (
   fname3 VARCHAR (50)
 );
 
+-- zipcode : 2013.02 지번주소(총 52144건)
+CREATE table zipcode (
+ zipcode varchar(7),
+ sido varchar(10),
+ gugun varchar(25),
+ dong varchar(65),
+ bunji varchar(25),
+ seq varchar(5)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

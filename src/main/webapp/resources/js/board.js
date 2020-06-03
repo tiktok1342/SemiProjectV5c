@@ -28,12 +28,32 @@ $('#bdnobtn').on('click', function () {
     location.href = '/board/list.do';
 }); // 취소하기
 
-$('#deltbd').on('click', function () {
-    location.href =
-        '/board/delete.do?bno=${param.bno}';
+$('#delbd').on('click', function () {
+    var isDelete = confirm("본문글을 정말로 삭제하시겠습니까?");
+    if (isDelete) {
+        var bno = $('#bno').val();
+        location.href ='/board/delete.do?bno=' + bno;
+    }
 }); // 삭제하기
 
 $('#updbd').on('click', function () {
     location.href =
         '/board/update.do?bno=${param.bno}';
 }); // 수정하기
+
+// 대댓글 쓰기
+function addReply(refno) {
+    $('#cmtModal').modal('show');
+
+    $('#refno').val(refno);
+    //모달창을 띄웠을때
+    //해당 댓글 번호를 refno 변수에 저장함
+}
+
+$('#cmtbtn').on('click', function () {
+    if ($('#comment').val() == "")
+        alert('대댓글을 작성하세요!!');
+    else
+        $('#cmtfrm').attr('action', '/reply/bdrpywrite');
+        $('#cmtfrm').submit('');
+})

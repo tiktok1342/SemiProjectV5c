@@ -95,6 +95,11 @@ public class BoardDAO {
         return bdcnt;
     }
 
+    // 삭제하기
+    public void deleteBoard(String bno) {
+
+    }
+
     // selectBoard의 RowMapper 내부 클래스
     private class BoardRowMapper implements RowMapper<BoardVO> {
 
